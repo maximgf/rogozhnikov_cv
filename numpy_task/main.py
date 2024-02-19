@@ -21,12 +21,12 @@ e = np.arange(0,1.25,0.25)
 assert np.all(e == np.array([0., 0.25, 0.5, 0.75, 1.0]))
 
 f = np.arange(5 * 5).reshape(5, 5)
-fc = np.array([1,3,11,13,21,23]).reshape(3,2)
+fc = f[0:6:2, 1:4:2]
 
 assert np.all(fc == np.array([[1, 3], [11, 13], [21, 23]]))
 
 g = np.ones((5, 3))
-gc = 3*np.ones((1,5))
+gc = g.reshape(3, 5) * 3
 
 assert np.all(gc == np.array([3., 3., 3., 3., 3.]))
 
