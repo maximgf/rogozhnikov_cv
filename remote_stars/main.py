@@ -48,4 +48,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.send(f"{res:.1f}".encode())
 
     sock.send(b"beat")
+    print(sock.recv(20).decode())
 
