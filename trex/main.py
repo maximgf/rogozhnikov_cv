@@ -38,11 +38,11 @@ with mss() as sct:
     # Вычисление координат для области, в которой будет нарисован прямоугольник
     #top_left = (t_min_loc[0], t_min_loc[1])
     #bottom_right = (t_min_loc[0] + dino_img.shape[1], t_min_loc[1] + dino_img.shape[0])
-    temp = 0
-    temp_time = time()
-    temp_v = 0
+    #temp = 0
+    #temp_time = time()
+    #temp_v = 0
     start = time()
-
+    timer = 0
     while True:
         frame_start_time = time()
         img = np.array(sct.grab(monitor))
@@ -65,12 +65,15 @@ with mss() as sct:
             #agr = w * 0.7+ h*0.85
             # Нарисуйте прямоугольник на изображении
                 #cv.rectangle(enemy, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            #if time() - start < 34:
-                #agr = 35
-
-            if x <= 24:
+            agr = 45
+            if time() - start < 50:
+                agr = 20
+            timer = time() - start
+            if timer > 330:
+                timer = 330
+            if x <= agr:
                 if y + h - t_min_loc[1] - 20 > 0:
-                    sleeper = (w) * 20 / (1000 + (round(time() - start,3) * 40))
+                    sleeper = (w) * 20 / (1000 + timer * 40)
                     if y - t_min_loc[1] >= -10:
                         sleeper += 0.1
                         #print("high")
@@ -85,7 +88,7 @@ with mss() as sct:
                     inp.keyUp("down")
                 else:
                     inp.keyDown("down")
-                    sleep(abs(sleeper))
+                    sleep(abs(sleeper-0.04))
                     inp.keyUp("down")
             #temp = x
             #temp_time = time()
