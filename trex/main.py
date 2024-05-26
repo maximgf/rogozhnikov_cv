@@ -65,30 +65,33 @@ with mss() as sct:
             #agr = w * 0.7+ h*0.85
             # Нарисуйте прямоугольник на изображении
                 #cv.rectangle(enemy, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            agr = 45
-            if time() - start < 50:
-                agr = 20
+            agr = 30
             timer = time() - start
-            if timer > 330:
-                timer = 330
+            if timer > 70:
+                timer = 480
+                arg = 45
+            #if dino_img.shape[1] > w and timer > 40:
+                #n = 0.2
             if x <= agr:
                 if y + h - t_min_loc[1] - 20 > 0:
                     sleeper = (w) * 20 / (1000 + timer * 40)
                     if y - t_min_loc[1] >= -10:
-                        sleeper += 0.1
+                        sleeper += 0.1 #- n
+                    #if dino_img.shape[1] > w and timer > 120:
+                        #sleeper -= 0.2
                         #print("high")
                     #if sleeper < 0:
                         #print("xx")
                         #sleeper = 0.2
                     #print(time() - start)
                     inp.press("up")
-                    sleep(sleeper/4)
+                    sleep((sleeper)/3)
                     inp.keyDown("down")
                     sleep(0.02)
                     inp.keyUp("down")
                 else:
                     inp.keyDown("down")
-                    sleep(abs(sleeper-0.04))
+                    sleep((sleeper-0.4))
                     inp.keyUp("down")
             #temp = x
             #temp_time = time()
